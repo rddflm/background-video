@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Vídeos em Loop</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    #video-container {
+      width: 759px;
+      height: 786px;
+      overflow: hidden;
+      position: relative;
+    }
+    #background-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <video id="background-video" autoplay muted playsinline></video>
+  </div>
+
+  <script>
+    const videos = [
+      "https://drive.google.com/uc?export=download&id=1mFCG1kM4NUSBo80xSVcoAxL5m1tDPdob",
+      "https://drive.google.com/uc?export=download&id=1dRr6fMMkepz52GdaDHwdgwK10wJodeRp",
+      "https://drive.google.com/uc?export=download&id=18aR4U8-LUvyVlzevGIVy9hA4Zpp5zlNa",
+      "https://drive.google.com/uc?export=download&id=1ApelNP07Qa3PMwxGX5_Gsscdz-_2AUiK",
+      "https://drive.google.com/uc?export=download&id=1DVM2mAafZNdNa7zTYcYFoINTWLgrXWET",
+      "https://drive.google.com/uc?export=download&id=1ODymxZWz2Vm5JhIJHWqmWRnKrw5F1meF",
+      "https://drive.google.com/uc?export=download&id=1CMblxtsSPnVAWJ_bR_BSIGT5kCmZJUGl",
+      "https://drive.google.com/uc?export=download&id=1WjBr5RQdNdXIjgKZCd4DA8hbIT0eCKwN",
+      "https://drive.google.com/uc?export=download&id=1ZlDKJUeaq_QSxo_lEOLnTfo7eKxKUPbi",
+      "https://drive.google.com/uc?export=download&id=1Y5MH2hu8ewlIygVR33I3tJz1Nwfd2XgK",
+      "https://drive.google.com/uc?export=download&id=1w5KbEBajEvsl3382nYmuvf01Ls7Ebg06",
+      "https://drive.google.com/uc?export=download&id=1dVsGcbfDB9XNJ86mGUK8QS-kyNZLWsuj"
+    ];
+
+    let current = 0;
+    const video = document.getElementById("background-video");
+    let timeout;
+
+    function playNext() {
+      video.src = videos[current];
+      video.load();
+      video.play();
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        current = (current + 1) % videos.length;
+        playNext();
+      }, 10000);
+    }
+
+    video.addEventListener("error", () => {
+      current = (current + 1) % videos.length;
+      playNext();
+    });
+
+    playNext();
+  </script>
+</body>
+</html>
