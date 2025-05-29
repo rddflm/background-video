@@ -2,26 +2,35 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Teste de Vídeo Direto</title>
+  <title>Teste de Vídeo Manual</title>
   <style>
     body {
       margin: 0;
       background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     video {
       width: 759px;
       height: 786px;
       object-fit: cover;
       display: block;
-      margin: 0 auto;
+    }
+    button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
+  <button onclick="document.getElementById('v').play()">▶️ Iniciar vídeo</button>
+  <video id="v" muted loop>
     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
     Seu navegador não suporta vídeo.
   </video>
 </body>
 </html>
-
